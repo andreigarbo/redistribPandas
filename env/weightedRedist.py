@@ -6,7 +6,7 @@ import numpy as np
 
 def calcCellVal(cellV, radius, point):
     val = 0
-    val = 1 - np.sqrt((point.x - cellV.x) * (point.y - cellV.y) + ())/radius
+    val = 1 - np.sqrt((point.x - cellV.x) * (point.x - cellV.x) + (point.y - cellV.y) * (point.y - cellV.y))/radius
     return val
 
 def weightedRedist(w, s, pointData, weightingSurface, administrativeAreas):
