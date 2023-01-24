@@ -2,9 +2,11 @@ from time import time
 import geopandas as gpd
 from shapely.geometry import Point
 import random
+import numpy as np
 
-def calcCellVal(cellV, radius, ):
+def calcCellVal(cellV, radius, point):
     val = 0
+    val = 1 - np.sqrt((point.x - cellV.x) * (point.y - cellV.y) + ())/radius
     return val
 
 def weightedRedist(w, s, pointData, weightingSurface, administrativeAreas):
@@ -26,7 +28,7 @@ def weightedRedist(w, s, pointData, weightingSurface, administrativeAreas):
                 point = p[maxV]
                 r = (w * admin.area) / s
                 for cell in point.buffer(r):
-                    cellV = calcCellVal(cellV, r)
+                    cellV = calcCellVal(cellV, r, point)
                     outputSurface.append(cellV)
     return outputSurface
 
